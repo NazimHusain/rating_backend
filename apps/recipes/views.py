@@ -12,7 +12,7 @@ from django.db.models import Avg
 
 
 class RecipeListCreateAPIView(APIView):
-    permission_classes = [IsAuthenticated, UserModels.IsSeller]
+    permission_classes = [UserModels.IsSeller]
 
     def get(self, request, version):
         recipes = RecipeModels.Recipe.objects.all()
@@ -43,7 +43,7 @@ class RecipeListCreateAPIView(APIView):
     
     
 class RecipeDetailAPIView(APIView):
-    permission_classes = [IsAuthenticated, UserModels.IsCustomer]
+    permission_classes = [UserModels.IsCustomer]
 
     def get(self, request,version, pk=None):
         if pk:
@@ -58,7 +58,7 @@ class RecipeDetailAPIView(APIView):
   
 
 class RecipeRatingAPIView(APIView):
-    permission_classes = [IsAuthenticated, UserModels.IsCustomer]
+    permission_classes = [UserModels.IsCustomer]
     
     def post(self, request, version):
         customer = request.user
